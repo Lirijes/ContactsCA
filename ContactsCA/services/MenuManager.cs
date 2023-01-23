@@ -131,7 +131,7 @@ namespace ContactsCA.services
             string? input = Console.ReadLine();
 
             var contact = oneContact?.FirstOrDefault(x => x.FirstName == input);
-            if (oneContact != null)
+            if (contact != null)
                 oneContact?.Remove(contact);
 
                 Console.WriteLine("Contact is deleted.");
