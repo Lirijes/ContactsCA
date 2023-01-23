@@ -121,19 +121,19 @@ namespace ContactsCA.services
                     "\n" + contact.Email);
 
             Console.ReadKey();
-
         }
 
         private void Option4()
         {
-            var items = JsonConvert.DeserializeObject<List<Contacts>>(file.Read(FilePath));
+            var oneContact = JsonConvert.DeserializeObject<List<Contacts>>(file.Read(FilePath));
 
             Console.WriteLine("Enter the name of the contact that you wish to delete: ");
             string? input = Console.ReadLine();
 
-            var contact = items?.FirstOrDefault(x => x.FirstName == input);
-            if (contact != null)
-                items?.Remove(contact);
+            var contact = oneContact?.FirstOrDefault(x => x.FirstName == input);
+            if (oneContact != null)
+                oneContact?.Remove(contact);
+
                 Console.WriteLine("Contact is deleted.");
 
             Console.ReadKey();
