@@ -15,11 +15,6 @@ namespace ContactsCA.services
 
         public string FilePath { get; set; } = null!;
 
-        //     public Family? GetByFirstName(string FirstName)
-        //     {
-        //return contacts.SingleOrDefault(x => x.FirstName.Equals(FirstName));
-        //     }
-
         public void WelcomeMenu()
         {
             Console.Clear();
@@ -111,85 +106,34 @@ namespace ContactsCA.services
 
         private void Option3()
         {
-            //var oneContact = JsonConvert.DeserializeObject<List<Family>>(file.Read(FilePath));
+            var oneContact = JsonConvert.DeserializeObject<List<Contacts>>(file.Read(FilePath));
             Console.Clear();
 
             Console.WriteLine("Enter the name of the contact that you wish to show: ");
             string? inputName = Console.ReadLine();
 
-            var contact = contacts.FirstOrDefault(x => x.FirstName == inputName);
+            var contact = oneContact?.FirstOrDefault(x => x.FirstName == inputName);
             if (contact != null)
                 Console.WriteLine(contact.FirstName +
-                    "/n" + contact.LastName +
-                    "/n" + contact.PhoneNumber +
-                    "/n" + contact.Adress +
-                    "/n" + contact.Email);
+                    "\n" + contact.LastName +
+                    "\n" + contact.PhoneNumber +
+                    "\n" + contact.Adress +
+                    "\n" + contact.Email);
 
             Console.ReadKey();
-
-            //for (int i = 0; i < contacts.Count; i++)
-            //{
-            //	if(contacts[i].FirstName == inputName)
-            //	{
-            //		Console.WriteLine(contacts[i].FirstName);
-            //	}
-            //}
-
-            //var result = contacts.Where(inputName => inputName == inputName).SingleOrDefault();
-
-            //var findindex = contacts.FindIndex(contacts => contacts.FirstName == inputName);
-
-            //var findC = contacts.FirstOrDefault(x => x.FirstName == inputName);
-
-            //        if (inputName != null)
-            //foreach (var contact in contacts)
-            //{
-            //	var findC = contacts.FirstOrDefault(x => x.FirstName == inputName);
-            //	Console.WriteLine(findC);
-            //	//Console.WriteLine($"{contact.FirstName}");
-
-            //}
-
-            //var oneC = contacts.ElementAt(oneContact);
-            //var oneC = contacts[inputName];
-
-            //         if (inputName != null && oneContact.Count > 0)
-            //{
-            //             var specificContact = oneContact.Where < x => x.ID >
-            //         }
-
-            //foreach (var contacts in contacts)
-            //{
-            //	Console.WriteLine(contacts);
-            //}
-
-
-            //var savedfiles = file.Read(FilePath);
-            //var contacts = JsonConvert.DeserializeObject<List<IFamily>>(savedfiles);
-            //var result = new Family();
-
-            //foreach (var contact in contacts)
-            //{
-            //	if (contact.ID == ID)
-            //	{
-            //		result = (Family)contact;
-            //		break;
-            //	}
-            //}
-            //return;
 
         }
 
         private void Option4()
         {
-            //var items = JsonConvert.DeserializeObject<List<Family>>(file.Read(FilePath));
+            var items = JsonConvert.DeserializeObject<List<Contacts>>(file.Read(FilePath));
 
             Console.WriteLine("Enter the name of the contact that you wish to delete: ");
-            string input = Console.ReadLine();
+            string? input = Console.ReadLine();
 
-            var contact = contacts.Where(x => x.FirstName == input);
+            var contact = items?.FirstOrDefault(x => x.FirstName == input);
             if (contact != null)
-                //contacts.RemoveAt(contact);
+                items?.Remove(contact);
                 Console.WriteLine("Contact is deleted.");
 
             Console.ReadKey();
