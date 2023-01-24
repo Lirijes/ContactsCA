@@ -8,6 +8,8 @@ namespace ContactsCA.services
 {
     public class FileServices
     {
+        public string FilePath { get; set; } = string.Empty;
+
         public void Save(string filePath, string content)
         {
             try

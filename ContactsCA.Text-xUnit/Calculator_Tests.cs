@@ -12,7 +12,7 @@ namespace ContactsCA.Text_xUnit
             calculator = new Calculator();
             calculator.Total = 0;
         }
-            
+
         [Fact]
         public void Should_Add_GivenNumber_To_Total()
         {
@@ -44,6 +44,25 @@ namespace ContactsCA.Text_xUnit
             calculator.Add(v3);
 
             // assert
+            Assert.Equal(expected, calculator.Total);
+        }
+
+        public static IEnumerable<object[]> testValues()
+        {
+            yield return new object[] { 0.3m, new decimal[] { 0.1m, 0.1m, 0.1m } };
+            yield return new object[] { 6, new decimal[] { 1, 2, 3 } };
+            yield return new object[] { 30.5, new decimal[] { 10, 20, 0.5m } };
+            yield return new object[] { 10, new decimal[] { 5, 5 } };
+            yield return new object[] { 0, new decimal[] { 10, -10 } };
+        }
+
+        [Theory]
+        [MemberData(nameof(testValues))]
+        public void Add_MultipleNumbers_To_Total(decimal expected, params decimal[] values)
+        {
+            foreach (decimal value in values)
+                calculator.Add(value);
+
             Assert.Equal(expected, calculator.Total);
         }
     }
