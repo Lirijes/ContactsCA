@@ -134,28 +134,9 @@ namespace ContactsCA.services
             if (contact != null)
                 oneContact?.Remove(contact);
 
-                Console.WriteLine("Contact is deleted.");
+            file.Save(FilePath, JsonConvert.SerializeObject(oneContact));
 
-            Console.ReadKey();
-
-            //var response = contacts.Find(input => input.ID == input.ID);
-
-            //contacts = contacts.Where(input => input.ID != input.ID).ToList();
-
-            //if (input != null)
-            //{
-            //    contacts.RemoveAt(input);
-
-            //	Console.WriteLine("Contact is removed.");
-            //}
-
-            //for (int i = 0; i < contacts.Count; i++ )
-            //{
-            //	if (contacts[i].Equals(input))
-            //	{
-            //		contacts.RemoveAt(i);
-            //	}
-            //}
+            Console.WriteLine("Contact is deleted.");
 
             Console.ReadKey();
         }
